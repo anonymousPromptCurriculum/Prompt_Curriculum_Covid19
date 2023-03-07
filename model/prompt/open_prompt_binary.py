@@ -154,7 +154,7 @@ for step, inputs in enumerate(test_dataloader):
 cm = confusion_matrix(y_true=alllabels, y_pred=allpreds)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
-plt.savefig('./results/open_prompt_binary_'+FORM+'_'+str(QID)+'.png')#保存图片
+plt.savefig('./results/open_prompt_binary_'+FORM+'_'+str(QID)+'.png')#save image
 
 report = classification_report(alllabels, allpreds, digits=4)
 my_open = open('./results/open_prompt_binary_'+FORM+'_'+str(QID)+'.txt', 'w')

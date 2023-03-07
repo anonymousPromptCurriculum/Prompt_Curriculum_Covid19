@@ -1,5 +1,4 @@
 #! -*- coding:utf-8 -*-
-# 情感分析例子，利用MLM做 Zero-Shot/Few-Shot/Semi-Supervised Learning
 
 import os
 import numpy as np
@@ -30,7 +29,7 @@ appendix_pattern = {1:['']}
 logging.basicConfig(level=logging.INFO)
 
 class LecCallTag():
-    # 数据处理
+    # data process
     def data_process(self, data_file, qid, eda):
         if eda == 't':
             column_index = 'label'
@@ -65,7 +64,7 @@ class LecCallTag():
 
         return tokenizer, model
     
-    # 构建dataset
+    # consturct dataset
     def create_dataset(self, text, label, tokenizer, max_len):
         X_train, X_temp, Y_train, Y_temp = train_test_split(text, label, test_size=0.3, random_state=1)
         X_val, X_test, Y_val, Y_test = train_test_split(X_temp, Y_temp, test_size=0.6667, random_state=1)
@@ -85,7 +84,7 @@ class LecCallTag():
         test_dataset = test_dataset.map(preprocess_function, batched=True)
         return train_dataset, val_dataset, test_dataset
     
-    # 构建trainer
+    # construct trainer
     def create_trainer(self, model, train_dataset, val_dataset, checkpoint_dir, epoch, batch_size, tokenizer):
         class WeightedLossTrainer(Trainer):
             def compute_loss(self, model, inputs, return_outputs=False):
@@ -140,7 +139,7 @@ def test(test_dataset, trainer, qid):
     cm = confusion_matrix(y_true=labels, y_pred=preds)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm)
     disp.plot()
-    plt.savefig('./results/'+'prompt_'+qid+'.png')#保存图片
+    plt.savefig('./results/'+'prompt_'+qid+'.png')#save image
 
     report = classification_report(labels, preds, digits=4)
     my_open = open('./results/'+'prompt_'+qid+'.txt', 'w')
