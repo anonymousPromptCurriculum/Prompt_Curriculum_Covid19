@@ -141,7 +141,7 @@ for i in range(4):
             acc = cur_acc
             torch.save(prompt_model, checkpoint_dir)
 
-    # 加载新的数据集
+    # load new dataset
     dataset['train'] = load_data('./data/eda/0.'+str(i+1)+'_agg/'+str(QID)+'_mul.csv', label=1, header=None, text=2)
     model_inputs['train'] = []
     for sample in dataset['train']:

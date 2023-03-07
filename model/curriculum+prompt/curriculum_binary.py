@@ -134,7 +134,7 @@ for i in range(4):
             acc = cur_acc
             torch.save(prompt_model, checkpoint_dir)
 
-    # 加载新的数据集
+    # load new dataset
     dataset['train'] = load_data('./data/eda/0.'+str(i+1)+'_agg/'+str(QID)+'_bin.csv', label=1, header=None, text=2)
     model_inputs['train'] = []
     for sample in dataset['train']:
@@ -167,7 +167,7 @@ for step, inputs in enumerate(test_dataloader):
 cm = confusion_matrix(y_true=alllabels, y_pred=allpreds)
 disp = ConfusionMatrixDisplay(confusion_matrix=cm)
 disp.plot()
-plt.savefig('./results/curriculum_binary_'+FORM+'_'+str(QID)+'.png')#保存图片
+plt.savefig('./results/curriculum_binary_'+FORM+'_'+str(QID)+'.png')#save image
 
 report = classification_report(alllabels, allpreds, digits=4)
 my_open = open('./results/curriculum_binary_'+FORM+'_'+str(QID)+'.txt', 'w')
