@@ -1,5 +1,4 @@
 #! -*- coding:utf-8 -*-
-# 情感分析例子，利用MLM做 Zero-Shot/Few-Shot/Semi-Supervised Learning
 
 import os
 import numpy as np
